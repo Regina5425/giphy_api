@@ -1,0 +1,10 @@
+.gif-block {
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	gap: 15px;
+}
+.gif-block__img {
+	width: 400px;
+	height: 300px;
+}
