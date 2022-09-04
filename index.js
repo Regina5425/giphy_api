@@ -25,6 +25,13 @@ async function getGif() {
 		const searchedData = await response.json();
 		console.log(searchedData);
 
+		// если ничего не найдено
+		if(searchedData.meta.status === 404) {
+			gifBlock.innerHTML = `
+				<div>Ничего не найдено</div>
+			`;
+		}
+
 		// нужно получить только data
 		const gifData = searchedData.data;
 		console.log(gifData);
@@ -44,9 +51,9 @@ async function getGif() {
 			img.src = item.images.downsized.url;
 			img.alt = item.title;
 			title.textContent = item.title;
-
-			input.value = '';
 		});
+
+		input.value = '';
 	} catch (err) {
 		console.error(err);
 		gifBlock.innerHTML = `
