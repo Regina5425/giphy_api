@@ -24,17 +24,19 @@ async function getGif() {
 		//получаем объект с data, pagination, meta
 		const searchedData = await response.json();
 		console.log(searchedData);
-
-		// если ничего не найдено
-		if(searchedData.meta.status === 404) {
-			gifBlock.innerHTML = `
-				<div>Ничего не найдено</div>
-			`;
-		}
-
 		// нужно получить только data
 		const gifData = searchedData.data;
 		console.log(gifData);
+
+		// если ничего не найдено
+		if (searchedData.data.length === 0) {
+			gifBlock.innerHTML = `
+				<div>Ничего не найдено</div>
+			`;
+			setTimeout(() => {
+				gifBlock.innerHTML = '';
+			}, 3000);
+		}
 
 		// перебираем каждый элемент data (массив из 5 элементов)
 		gifData.forEach(item => {
