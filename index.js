@@ -13,9 +13,9 @@ function search() {
 }
 
 async function getGif() {
-	try {
-		const searched = input.value.trim();
+	const searched = input.value.trim();
 
+	try {
 		const url = `https://api.giphy.com/v1/gifs/search?api_key=${APIKEY}&q=${searched}
 		&limit=5&offset=0&rating=g`;
 
@@ -23,10 +23,8 @@ async function getGif() {
 
 		//получаем объект с data, pagination, meta
 		const searchedData = await response.json();
-		console.log(searchedData);
 		// нужно получить только data
 		const gifData = searchedData.data;
-		console.log(gifData);
 
 		// если ничего не найдено
 		if (searchedData.data.length === 0) {
@@ -38,7 +36,7 @@ async function getGif() {
 			}, 3000);
 		}
 
-		// перебираем каждый элемент data (массив из 5 элементов)
+		// перебираем каждый элемент data
 		gifData.forEach(item => {
 			const gifItem = document.createElement('div'),
 				img = document.createElement('img'),
@@ -59,7 +57,7 @@ async function getGif() {
 	} catch (err) {
 		console.error(err);
 		gifBlock.innerHTML = `
-		<div>Упс... Что-то пошло не так... Попробуйте зайти позже</div>
+		<div>Сервер не доступен. Попробуйте зайти позже</div>
 		`;
 	}
 }
