@@ -1,4 +1,4 @@
-# JS practice
-## test giphy_api
+# Giphy API
+## JS practice
 
-Find some gif images
+Find some gif images from free API
