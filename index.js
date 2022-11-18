@@ -20,13 +20,9 @@ async function getGif() {
 		&limit=5&offset=0&rating=g`;
 
 		const response = await fetch(url);
-
-		//получаем объект с data, pagination, meta
 		const searchedData = await response.json();
-		// нужно получить только data
 		const gifData = searchedData.data;
 
-		// если ничего не найдено
 		if (searchedData.data.length === 0) {
 			gifBlock.innerHTML = `
 				<div>Ничего не найдено</div>
@@ -36,7 +32,6 @@ async function getGif() {
 			}, 3000);
 		}
 
-		// перебираем каждый элемент data
 		gifData.forEach(item => {
 			const gifItem = document.createElement('div'),
 				img = document.createElement('img'),
